@@ -1,11 +1,51 @@
-﻿// DisplayString_v1.0.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// DisplayString_v1.0 - вывод символьного массива с
+//                      использованием указателей и
+// 					    индексов массива
+
 //
-
+#include <cstdio>
+#include <cstdlib>  
 #include <iostream>
+#include <windows.h>
 
-int main()
+using namespace std;
+
+int main(int nNumberofArgs, char* pszArgs[])
 {
-    std::cout << "Hello World!\n";
+    // переводим консоль на CP1251 — ту же, что и у строк в программе
+    SetConsoleCP(1251);        // кодировка ввода (работает cin)
+    SetConsoleOutputCP(1251);  // кодировка вывода (работает cout)
+    setlocale(LC_ALL, "Russian");
+
+    //Объявляем строку
+    const char* szString = "Randy";
+    cout << "Массив '" << szString << "'" << endl;
+
+    // Выводим szString как массив
+    cout << "Выводим строку как массив: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cout << szString[i];
+
+    }
+    cout << endl;
+
+    //Воспользуемся арифметикой указателей
+    cout << "Выводим строку с помощью указателя: ";
+    const char* pszString = szString;
+    while (*pszString)
+    {
+        cout << *pszString;
+        pszString++;
+    }
+    cout << endl;
+
+    //Ожидание, позволяющее пользователю увидеть результат
+    //работы программы
+    cout << "Нажмите Enter для продолжения... " << endl;
+    cin.ignore(10, '\n');
+    cin.get();
+    return 0;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
